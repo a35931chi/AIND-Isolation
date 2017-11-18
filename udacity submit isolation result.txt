@@ -1,0 +1,165 @@
+udacity submit isolation result
+Uploading submission...
+[=========================== 100% ===========================] 12010/12010
+
+Waiting for results...Done!
+
+Results:
+--------
+
+************************************************************************
+                         Test Failure Feedback
+************************************************************************
+
+Failed Test: 1. Test output interface of MinimaxPlayer.minimax()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 216, in minimax
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 2. Test functionality of MinimaxPlayer.minimax()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 216, in minimax
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 3. Test that minimax() raises SearchTimeout when the timer expires
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 216, in minimax
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 4. Test that MinimaxPlayer successfully plays a full game
+----------------------------------------------------------------------
+Traceback (most recent call last):
+NotImplementedError
+
+During handling of the above exception, another exception occurred:
+
+AssertionError: Your agent raised an error while attempting to play a complete game against another agent.  Make sure that your agent can play an entire game -- including selecting initial moves on an empty board.
+Exception:
+
+
+Failed Test: 5. Test interface of AlphaBetaPlayer.alphabeta()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 309, in alphabeta
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 6. Test the interface of AlphaBetaPlayer.get_move()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 258, in get_move
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 7. Test functionality of AlphaBetaPlayer.alphabeta()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 309, in alphabeta
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 8. Test that alphabeta() raises SearchTimeout when the timer expires
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 309, in alphabeta
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 9. Test iterative deepening in AlphaBetaPlayer.get_move()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 258, in get_move
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 10. Test that AlphaBetaPlayer successfully plays a full game
+----------------------------------------------------------------------
+Traceback (most recent call last):
+NotImplementedError
+
+During handling of the above exception, another exception occurred:
+
+AssertionError: Your agent raised an error while attempting to play a complete game against another agent.  Make sure that your agent can play an entire game -- including selecting initial moves on an empty board.
+Exception:
+
+
+Failed Test: 11. Test output interface of custom_score()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 38, in custom_score
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 12. Test output interface of custom_score_2()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 64, in custom_score_2
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 13. Test output interface of custom_score_3()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/grader/isolation/workspace/game_agent.py", line 90, in custom_score_3
+    raise NotImplementedError
+NotImplementedError
+
+
+Failed Test: 14. Submission includes heuristic_analysis.pdf
+----------------------------------------------------------------------
+AssertionError: False is not true : You must submit a report named heuristic_analysis.pdf for review.
+
+
+Failed Test: 15. Submission includes research_review.pdf
+----------------------------------------------------------------------
+AssertionError: False is not true : You must submit a report named research_review.pdf for review.
+
+
+************************************************************************
+                          Test Result Summary
+************************************************************************
+
+1. Test output interface of MinimaxPlayer.minimax():                   E
+2. Test functionality of MinimaxPlayer.minimax():                      E
+3. Test that minimax() raises SearchTimeout when the timer expires:    E
+4. Test that MinimaxPlayer successfully plays a full game:             F
+5. Test interface of AlphaBetaPlayer.alphabeta():                      E
+6. Test the interface of AlphaBetaPlayer.get_move():                   E
+7. Test functionality of AlphaBetaPlayer.alphabeta():                  E
+8. Test that alphabeta() raises SearchTimeout when the timer expires:  E
+9. Test iterative deepening in AlphaBetaPlayer.get_move():             E
+10. Test that AlphaBetaPlayer successfully plays a full game:          F
+11. Test output interface of custom_score():                           E
+12. Test output interface of custom_score_2():                         E
+13. Test output interface of custom_score_3():                         E
+14. Submission includes heuristic_analysis.pdf:                        F
+15. Submission includes research_review.pdf:                           F
+
+------------------------------------------------------------------------
+            . - Test Passed    F - Test Failed    E - Error
+
+--------------------------------------------------------------------------------
+
+Not all of the tests passed.  If you are really stuck, consider asking your classroom mentor for help.
+
+
+Details are available in isolation-result-159825.json.
+
+If you would like this version of the project to be reviewed,
+submit isolation-159825.zip to the reviews website.

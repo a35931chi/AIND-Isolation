@@ -212,7 +212,7 @@ class MinimaxPlayer(IsolationPlayer):
         def min_value(game, depth):
             if len(legal_moves) == 0 or not legal_moves:
                 return 1
-            if depth = 0:
+            if depth == 0:
                 return 0 #not sure if this assumption is correct
             
             if self.time_left() < self.TIMER_THRESHOLD:
@@ -227,7 +227,7 @@ class MinimaxPlayer(IsolationPlayer):
         def max_value(game, depth):
             if len(legal_moves) == 0 or not legal_moves:
                 return -1
-            if depth = 0:
+            if depth == 0:
                 return 0 #not sure if this assumption is correct
             
             if self.time_left() < self.TIMER_THRESHOLD:
@@ -303,7 +303,6 @@ class AlphaBetaPlayer(IsolationPlayer):
         try:
             # The try/except block will automatically catch the exception
             # raised when the timer is about to expire.
-            best_move_itr
             for iter_depth in range(self.search_depth):
                 best_move_list.append(self.alphabeta(game, iter_depth))
                                 
@@ -363,7 +362,7 @@ class AlphaBetaPlayer(IsolationPlayer):
         def min_value(game, depth, alpha, beta):
             if len(legal_moves) == 0 or not legal_moves:
                 return 1
-            if depth = 0:
+            if depth == 0:
                 return 0 #not sure if this assumption is correct
             
             if self.time_left() < self.TIMER_THRESHOLD:
@@ -380,7 +379,7 @@ class AlphaBetaPlayer(IsolationPlayer):
         def max_value(game, depth, alpha, beta):
             if len(legal_moves) == 0 or not legal_moves:
                 return -1
-            if depth = 0:
+            if depth == 0:
                 return 0 #not sure if this assumption is correct
             
             if self.time_left() < self.TIMER_THRESHOLD:
@@ -409,6 +408,6 @@ class AlphaBetaPlayer(IsolationPlayer):
             v = max_value(game.forecast_move(move), depth, alpha, beta)
             if v > best_score:
                 best_score = v
-                best_move = m
+                best_move = move
 
         return best_move

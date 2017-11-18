@@ -209,11 +209,49 @@ class MinimaxPlayer(IsolationPlayer):
                 each helper function or else your agent will timeout during
                 testing.
         """
+        def min_value(game, depth):
+            if len(game.get_legal_moves()) == 0 or not game.get_legal_moves() or depth == 0:
+                return self.score(game, self)
+
+            if self.time_left() < self.TIMER_THRESHOLD:
+                raise SearchTimeout()
+            
+            v = float('inf')
+            for move in game.get_legal_moves():
+                v = min(v, max_value(game.forecast_move(move), depth - 1))
+            return v
+
+
+        def max_value(game, depth):
+            if len(game.get_legal_moves()) == 0 or not game.get_legal_moves() or depth == 0:
+                return self.score(game, self)
+            
+            if self.time_left() < self.TIMER_THRESHOLD:
+                raise SearchTimeout()
+            
+            v = float('-inf')
+            for move in game.get_legal_moves():
+                v = max(v, min_value(game.forecast_move(move), depth - 1))
+            return v
+
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()
 
-        # TODO: finish this function!
-        raise NotImplementedError
+        legal_moves = game.get_legal_moves()
+
+        if len(legal_moves) == 0 or not legal_moves:
+            return (-1, -1)
+        
+        best_score = float('-inf')
+        best_move = None
+        
+        for move in game.get_legal_moves():
+            v = min_value(game.forecast_move(move), depth)
+            if v > best_score:
+                best_score = v
+                best_move = move
+
+        return best_move
 
 
 class AlphaBetaPlayer(IsolationPlayer):

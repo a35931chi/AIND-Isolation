@@ -271,7 +271,7 @@ if __name__ == "__main__":
     assert(player1 == game.active_player)
 
     # get a list of the legal moves available to the active player
-    print(game.get_legal_moves())
+    print('all legal move: {}'.format(game.get_legal_moves()))
 
     # get a successor of the current state by making a copy of the board and
     # applying a move. Notice that this does NOT change the calling object

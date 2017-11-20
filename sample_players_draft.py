@@ -254,7 +254,7 @@ class HumanPlayer():
 
 if __name__ == "__main__":
     from isolation import Board
-    from game_agent import MinimaxPlayer
+    from game_agent_draft import MinimaxPlayer
 
     # create an isolation board (by default 7x7)
     player1 = RandomPlayer()
@@ -278,8 +278,21 @@ if __name__ == "__main__":
     game.apply_move((0, 5))
     print(game.to_string())
 
+    move = player1.get_move(game, 12.)
     print(game.get_legal_moves())
-    print(player2.get_move(game, 12.))
+    print(move)
+    print(game.active_player)
+    game.apply_move(move)
+    print(game.to_string())
+
+    move = player2.get_move(game, 12.)
+    print(game.get_legal_moves())
+    print(move)
+    print(game.active_player)
+
+    game.apply_move(move)
+    print(game.to_string())
+    
     huh = input('hang on')
     # players take turns moving on the board, so player1 should be next to move
     assert(player1 == game.active_player)

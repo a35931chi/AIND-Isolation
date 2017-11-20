@@ -35,7 +35,17 @@ def custom_score(game, player):
         The heuristic value of the current game state to the specified player.
     """
     # TODO: finish this function!
-    raise NotImplementedError
+    #improved_score
+    if game.is_loser(player):
+        return float("-inf")
+
+    if game.is_winner(player):
+        return float("inf")
+
+    own_moves = len(game.get_legal_moves(player))
+    opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
+    return float(own_moves - opp_moves)
+
     '''
     #null score
     if game.is_loser(player):
@@ -219,39 +229,51 @@ class MinimaxPlayer(IsolationPlayer):
                 testing.
         """
         def min_value(game, depth):
+            print('inside min_value with depth {}'.format(depth))
+            print('whos turn? {}'.format(game.active_player))
+            print('available moves: {}'.format(game.get_legal_moves()))
+
             if len(game.get_legal_moves()) == 0 or not game.get_legal_moves():
                 #for the most elementry algo = 1
                 return self.score(game, game.active_player)
             
-            if depth < 0:
+            if depth == 0:
                 return self.score(game, game.active_player)
     
-            if self.time_left() < self.TIMER_THRESHOLD:
-                raise SearchTimeout()
+            #if self.time_left() < self.TIMER_THRESHOLD:
+            #    raise SearchTimeout()
             
             v = float('inf')
             for move in game.get_legal_moves():
+                print('we choose {}'.format(move))
+                print(game.to_string())
                 v = min(v, max_value(game.forecast_move(move), depth - 1))
             return v
 
         def max_value(game, depth):
+            print('inside min_value with depth {}'.format(depth))
+            print('whos turn? {}'.format(game.active_player))
+            print('available moves: {}'.format(game.get_legal_moves()))
             if len(game.get_legal_moves()) == 0 or not game.get_legal_moves():
                 #for the most elementry algo = -1
                 return self.score(game, game.active_player)
             
-            if depth < 0:
+            if depth == 0:
                 return self.score(game, game.active_player)
             
-            if self.time_left() < self.TIMER_THRESHOLD:
-                raise SearchTimeout()
+            #if self.time_left() < self.TIMER_THRESHOLD:
+            #    raise SearchTimeout()
             
             v = float('-inf')
             for move in game.get_legal_moves():
+                print('we choose {}'.format(move))
+                print(game.to_string())
                 v = max(v, min_value(game.forecast_move(move), depth - 1))
             return v
+        print('whos turn? {}'.format(game.active_player))
 
-        if self.time_left() < self.TIMER_THRESHOLD:
-            raise SearchTimeout()
+        #if self.time_left() < self.TIMER_THRESHOLD:
+        #    raise SearchTimeout()
         
         legal_moves = game.get_legal_moves()
         print(legal_moves)
@@ -263,6 +285,9 @@ class MinimaxPlayer(IsolationPlayer):
         best_move = None
         
         for move in legal_moves:
+            print('player selecting move: {}'.format(game.active_player))
+            print('inside first loop with move {} and depth {}'.format(move, depth))
+            print(game.to_string())
             v = min_value(game.forecast_move(move), depth)
             if v > best_score:
                 best_score = v

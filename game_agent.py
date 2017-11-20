@@ -89,9 +89,9 @@ def custom_score_3(game, player):
     # TODO: finish this function!
     raise NotImplementedError
 
-def open_move_score(game, player):
-    """The basic evaluation function described in lecture that outputs a score
-    equal to the number of moves open for your computer player on the board.
+def null_score(game, player):
+    """This heuristic presumes no knowledge for non-terminal states, and
+    returns the same uninformative value for all other states.
 
     Parameters
     ----------
@@ -107,15 +107,16 @@ def open_move_score(game, player):
     Returns
     ----------
     float
-        The heuristic value of the current game state
+        The heuristic value of the current game state.
     """
+
     if game.is_loser(player):
         return float("-inf")
 
     if game.is_winner(player):
         return float("inf")
 
-    return float(len(game.get_legal_moves(player)))
+    return 0.
 
 class IsolationPlayer:
     """Base class for minimax and alphabeta agents -- this class is never
@@ -151,11 +152,10 @@ class MinimaxPlayer(IsolationPlayer):
     search. You must finish and test this player to make sure it properly uses
     minimax to return a good move before the search time limit expires.
     """
-    '''
-    def __init__(self, score_fn = open_move_score):
+    
+    def __init__(self, score_fn = null_score):
         self.score = score_fn
-    '''
-        
+    
     def get_move(self, game, time_left):
         """Search for the best move from the available legal moves and return a
         result before the time limit expires.
@@ -241,36 +241,34 @@ class MinimaxPlayer(IsolationPlayer):
                 testing.
         """
         def min_value(game, depth):
-            legal_moves = game.get_legal_moves()
-            if len(legal_moves) == 0 or not legal_moves:
+            if len(game.get_legal_moves()) == 0 or not game.get_legal_moves():
+                #for the most elementry algo = 1
                 return 1
             
-            if depth < -1:
+            if depth <= 0:
                 return 0
-            
     
             if self.time_left() < self.TIMER_THRESHOLD:
                 raise SearchTimeout()
             
             v = float('inf')
-            for move in legal_moves:
+            for move in game.get_legal_moves():
                 v = min(v, max_value(game.forecast_move(move), depth - 1))
             return v
 
         def max_value(game, depth):
-            legal_moves = game.get_legal_moves()
-            if len(legal_moves) == 0 or not legal_moves:
+            if len(game.get_legal_moves()) == 0 or not game.get_legal_moves():
+                #for the most elementry algo = -1
                 return -1
             
-            if depth < -1:
+            if depth <= 0:
                 return 0
-            
             
             if self.time_left() < self.TIMER_THRESHOLD:
                 raise SearchTimeout()
             
             v = float('-inf')
-            for move in legal_moves:
+            for move in game.get_legal_moves():
                 v = max(v, min_value(game.forecast_move(move), depth - 1))
             return v
 

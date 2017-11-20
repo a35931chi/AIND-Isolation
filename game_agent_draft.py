@@ -229,15 +229,12 @@ class MinimaxPlayer(IsolationPlayer):
                 testing.
         """
         def min_value(game, depth):
-            print('inside min_value with depth {}'.format(depth))
-            print('whos turn? {}'.format(game.active_player))
-            print('available moves: {}'.format(game.get_legal_moves()))
+            ##print('inside min_value with depth {}'.format(depth))
+            ##print('whos turn? {}'.format(game.active_player))
+            ##print('available moves: {}'.format(game.get_legal_moves()))
 
-            if len(game.get_legal_moves()) == 0 or not game.get_legal_moves():
+            if not game.get_legal_moves() or depth <= 0:
                 #for the most elementry algo = 1
-                return self.score(game, game.active_player)
-            
-            if depth == 0:
                 return self.score(game, game.active_player)
     
             #if self.time_left() < self.TIMER_THRESHOLD:
@@ -245,20 +242,17 @@ class MinimaxPlayer(IsolationPlayer):
             
             v = float('inf')
             for move in game.get_legal_moves():
-                print('we choose {}'.format(move))
-                print(game.to_string())
+                ##print('we choose {}'.format(move))
+                ##print(game.to_string())
                 v = min(v, max_value(game.forecast_move(move), depth - 1))
             return v
 
         def max_value(game, depth):
-            print('inside min_value with depth {}'.format(depth))
-            print('whos turn? {}'.format(game.active_player))
-            print('available moves: {}'.format(game.get_legal_moves()))
-            if len(game.get_legal_moves()) == 0 or not game.get_legal_moves():
+            ##print('inside min_value with depth {}'.format(depth))
+            ##print('whos turn? {}'.format(game.active_player))
+            ##print('available moves: {}'.format(game.get_legal_moves()))
+            if not game.get_legal_moves() or depth <= 0:
                 #for the most elementry algo = -1
-                return self.score(game, game.active_player)
-            
-            if depth == 0:
                 return self.score(game, game.active_player)
             
             #if self.time_left() < self.TIMER_THRESHOLD:
@@ -266,28 +260,30 @@ class MinimaxPlayer(IsolationPlayer):
             
             v = float('-inf')
             for move in game.get_legal_moves():
-                print('we choose {}'.format(move))
-                print(game.to_string())
+                ##print('we choose {}'.format(move))
+                ##print(game.to_string())
                 v = max(v, min_value(game.forecast_move(move), depth - 1))
             return v
-        print('whos turn? {}'.format(game.active_player))
+        ##print('whos turn? {}'.format(game.active_player))
 
         #if self.time_left() < self.TIMER_THRESHOLD:
         #    raise SearchTimeout()
         
-        legal_moves = game.get_legal_moves()
-        print(legal_moves)
+        
 
-        if len(legal_moves) == 0 or not legal_moves:
+        legal_moves = game.get_legal_moves()
+        if not legal_moves:
+            print('something wrong')
             return (-1, -1)
+        ##print(legal_moves)
         
         best_score = float('-inf')
-        best_move = None
+        best_move = legal_moves[0]
         
         for move in legal_moves:
-            print('player selecting move: {}'.format(game.active_player))
-            print('inside first loop with move {} and depth {}'.format(move, depth))
-            print(game.to_string())
+            ##print('player selecting move: {}'.format(game.active_player))
+            ##print('inside first loop with move {} and depth {}'.format(move, depth))
+            ##print(game.to_string())
             v = min_value(game.forecast_move(move), depth)
             if v > best_score:
                 best_score = v

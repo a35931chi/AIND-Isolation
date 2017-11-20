@@ -219,11 +219,8 @@ class MinimaxPlayer(IsolationPlayer):
                 testing.
         """
         def min_value(game, depth):
-            if len(game.get_legal_moves()) == 0 or not game.get_legal_moves():
+            if not game.get_legal_moves() or depth <= 0:
                 #for the most elementry algo = 1
-                return self.score(game, game.active_player)
-            
-            if depth < 0:
                 return self.score(game, game.active_player)
     
             if self.time_left() < self.TIMER_THRESHOLD:
@@ -235,13 +232,10 @@ class MinimaxPlayer(IsolationPlayer):
             return v
 
         def max_value(game, depth):
-            if len(game.get_legal_moves()) == 0 or not game.get_legal_moves():
+            if not game.get_legal_moves() or depth <= 0:
                 #for the most elementry algo = -1
                 return self.score(game, game.active_player)
-            
-            if depth < 0:
-                return self.score(game, game.active_player)
-            
+
             if self.time_left() < self.TIMER_THRESHOLD:
                 raise SearchTimeout()
             
@@ -260,7 +254,7 @@ class MinimaxPlayer(IsolationPlayer):
             return (-1, -1)
         
         best_score = float('-inf')
-        best_move = None
+        best_move = legal_moves[0]
         
         for move in legal_moves:
             v = min_value(game.forecast_move(move), depth)

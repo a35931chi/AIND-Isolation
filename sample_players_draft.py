@@ -257,7 +257,7 @@ if __name__ == "__main__":
     from game_agent_draft import MinimaxPlayer
 
     # create an isolation board (by default 7x7)
-    player1 = RandomPlayer()
+    player1 = GreedyPlayer()
     player2 = MinimaxPlayer()
     game = Board(player1, player2)
     #print(game.active_player)
@@ -268,32 +268,24 @@ if __name__ == "__main__":
     # place player 1 on the board at row 2, column 3, then place player 2 on
     # the board at row 0, column 5; display the resulting board state.  Note
     # that the .apply_move() method changes the calling object in-place.
-    print(game.get_legal_moves())
-    print(game.active_player)
-    game.apply_move((2, 3))
-    print(game.to_string())
+    while len(game.get_legal_moves()) > 0:
+        print('right now the active player is {}'.format(game.active_player))
+        print('all the available legal moves {}'.format(game.get_legal_moves()))
+        move = player1.get_move(game, 12.)
+        print('player picked {}'.format(move))
+        game.apply_move(move)
+        print(game.to_string())
 
-    print(game.get_legal_moves())
-    print(game.active_player)
-    game.apply_move((0, 5))
-    print(game.to_string())
-
-    move = player1.get_move(game, 12.)
-    print(game.get_legal_moves())
-    print(move)
-    print(game.active_player)
-    game.apply_move(move)
-    print(game.to_string())
-
-    move = player2.get_move(game, 12.)
-    print(game.get_legal_moves())
-    print(move)
-    print(game.active_player)
-
-    game.apply_move(move)
-    print(game.to_string())
+        
+        print('right now the active player is {}'.format(game.active_player))
+        print('all the available legal moves {}'.format(game.get_legal_moves()))
+        move = player2.get_move(game, 12.)
+        print('player picked {}'.format(move))
+        game.apply_move(move)
+        print(game.to_string())
+        huh = input('hang on')
     
-    huh = input('hang on')
+    huh = input('SSSSTTTTTOOOOOOPPPPPP')
     # players take turns moving on the board, so player1 should be next to move
     assert(player1 == game.active_player)
 

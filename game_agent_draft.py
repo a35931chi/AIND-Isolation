@@ -3,6 +3,7 @@ test your agent's strength against a set of known agents using tournament.py
 and include the results in your report.
 """
 import random
+import numpy as np
 
 
 class SearchTimeout(Exception):
@@ -235,6 +236,7 @@ class MinimaxPlayer(IsolationPlayer):
 
             if not game.get_legal_moves() or depth <= 0:
                 #for the most elementry algo = 1
+                ##print('end at max. avai moves: {}, score: {}'.format(game.get_legal_moves, self.score(game, game.active_player)))
                 return self.score(game, game.active_player)
     
             #if self.time_left() < self.TIMER_THRESHOLD:
@@ -253,6 +255,7 @@ class MinimaxPlayer(IsolationPlayer):
             ##print('available moves: {}'.format(game.get_legal_moves()))
             if not game.get_legal_moves() or depth <= 0:
                 #for the most elementry algo = -1
+                ##print('end at max. avai moves: {}, score: {}'.format(game.get_legal_moves, self.score(game, game.active_player)))
                 return self.score(game, game.active_player)
             
             #if self.time_left() < self.TIMER_THRESHOLD:
@@ -273,23 +276,23 @@ class MinimaxPlayer(IsolationPlayer):
 
         legal_moves = game.get_legal_moves()
         if not legal_moves:
-            print('something wrong')
             return (-1, -1)
-        ##print(legal_moves)
+        ##print(not game.get_legal_moves())
         
-        best_score = float('-inf')
-        best_move = legal_moves[0]
+        scores = []
+        moves = []
         
         for move in legal_moves:
             ##print('player selecting move: {}'.format(game.active_player))
             ##print('inside first loop with move {} and depth {}'.format(move, depth))
             ##print(game.to_string())
             v = min_value(game.forecast_move(move), depth)
-            if v > best_score:
-                best_score = v
-                best_move = move
-
-        return best_move
+            ##print('value: {}, move: {}'.format(v, move))
+            scores.append(v)
+            moves.append(move)
+        print('avail moves: ',moves)
+        print('corresponding scores: ',scores)
+        return moves[np.argmax(scores)]
 
 
 class AlphaBetaPlayer(IsolationPlayer):

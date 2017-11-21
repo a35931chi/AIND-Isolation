@@ -268,7 +268,8 @@ if __name__ == "__main__":
     # place player 1 on the board at row 2, column 3, then place player 2 on
     # the board at row 0, column 5; display the resulting board state.  Note
     # that the .apply_move() method changes the calling object in-place.
-    while len(game.get_legal_moves()) > 0:
+    move = None
+    while not game.get_legal_moves() or move != (-1, -1):
         print('right now the active player is {}'.format(game.active_player))
         print('all the available legal moves {}'.format(game.get_legal_moves()))
         move = player1.get_move(game, 12.)

@@ -340,17 +340,9 @@ class AlphaBetaPlayer(IsolationPlayer):
         try:
             # The try/except block will automatically catch the exception
             # raised when the timer is about to expire.
-            if not game.get_legal_moves():
-                return (-1, -1)
-            result = []
-            scores = []
-            for depth in range(self.search_depth):
-                result.append(self.alphabeta(game, depth)[0])
-                scores.append(self.alphabeta(game, depth)[1])
-            print('iterative deepening: {}'.format(result))
-            print('corresponding scores: {}'.format(scores))
-
-            return result[np.argmax(scores)]
+            for depth in range(game.height):
+                result = self.alphabeta(game, depth)
+            return result
 
         except SearchTimeout:
             pass  # Handle any actions required after timeout as needed
@@ -451,4 +443,4 @@ class AlphaBetaPlayer(IsolationPlayer):
             moves.append(move)
         ##print('all avail moves: {}'.format(moves))
         ##print('corresponding scores: {}'.format(scores))
-        return (moves[np.argmax(scores)], np.argmax(scores))
+        return moves[np.argmax(scores)]

@@ -22,4 +22,9 @@ class IsolationTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    print('start game')
+    player1 = RandomPlayer()
+    player2 = MinimaxPlayer()
+    game = isolation.Board(player1, player2)
+    print(game.active_player)
